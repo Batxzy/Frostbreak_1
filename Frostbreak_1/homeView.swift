@@ -49,7 +49,7 @@ struct homeView: View {
                 
                 VStack (alignment: .center, spacing: 24) {
                     VStack(alignment: .center, spacing: 10) {
-                        Text("00:00")
+                        Text("00:00!")
                             .font(.title.bold())
                     }
                     .padding(23)
@@ -70,7 +70,7 @@ struct homeView: View {
                     )
                     
                     VStack(alignment: .center, spacing: 12) {
-                        Text("descanzar")
+                        Text("Descanzar")
                             .font(.title3).fontWeight(.bold)
                                 }
                         .padding(.horizontal, 35)
@@ -103,6 +103,8 @@ struct homeView: View {
                         )
                 }
             }
+            .padding(.top,100)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         
     }
