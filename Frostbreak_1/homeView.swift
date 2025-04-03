@@ -1,13 +1,13 @@
 //
-//  TestView.swift
-//  Frostbreak
+//  homeView.swift
+//  Frostbreak_1
 //
 //  Created by Jose julian Lopez on 03/04/25.
 //
 
 import SwiftUI
 
-struct homeViews: View {
+struct homeView: View {
     var body: some View {
         ZStack {
             Image("HOME")
@@ -110,3 +110,4 @@ struct homeViews: View {
 #Preview {
     homeView()
 }
+
