@@ -7,166 +7,88 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var selectedTab: Tab = .eye
-    
-    enum Tab {
-        case eye
-        case body
-    }
-    
+struct homeView: View {
     var body: some View {
-        NavigationView {
-            VStack(alignment: .center, spacing: 25)  {
-                CustomTabBar(selectedTab: $selectedTab)
-                TabView(selection: $selectedTab) {
-                    ExercisesView1(category: "Eye")
-                        .tag(Tab.eye)
-                    
-                    ExercisesView2(category: "Body")
-                        .tag(Tab.body)
-                }
-            }
-            .padding(.horizontal, 24)
-            .padding(.top, 24)
-            .navigationTitle("Ejercicios")
-        }
-    }
-}
-
-struct CustomTabBar: View {
-    @Binding var selectedTab: ContentView.Tab
-    
-    var body: some View {
-        HStack {
-            Button(action: {
-                selectedTab = .eye
-            }) {
-                Text("Eye")
-                    .font(.subheadline.bold())
-                    .foregroundColor(selectedTab == .eye ? .white : .gray)
-                    .padding()
-                    .background(selectedTab == .eye ? Color.gray.opacity(0.5) : Color.clear)
-                    .cornerRadius(15)
-            }
-            
-            Button(action: {
-                selectedTab = .body
-            }) {
-                Text("Body")
-                    .font(.subheadline.bold())
-                    .foregroundColor(selectedTab == .body ? .white : .gray)
-                    .padding()
-                    .background(selectedTab == .body ? Color.gray.opacity(0.5) : Color.clear)
-                    .cornerRadius(15)
-            }
-        }
-        .padding(4)
-        .frame(width: 322, alignment: .center)
-        .background(Color.white.opacity(0.2))
-        .cornerRadius(100)
-    }
-}
-
-
-struct ExercisesView1: View {
-    let category: String
-    @State private var selectedCategory = 0
-    
-    let categories = ["Eye", "Body"]
-    
-    let exercises = [
-        Exercise(
-            title: "Ejercicio 20 20",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit."
-        ),
-        Exercise(
-            title: "Ejercicio 20 20",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit."
-        ),
-        Exercise(
-            title: "Ejercicio 20 20",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit."
-        )
-    ]
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEach(exercises.indices, id: \.self) { index in
-                        ExerciseRow1(exercise: exercises[index])
-                        
-                        if index != exercises.count - 1 {
-                            Divider()
-                                .padding(.horizontal)
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct ExercisesView2: View {
-    let category: String
-    @State private var selectedCategory = 0
-    
-    let categories = ["Eye", "Body"]
-    
-    let exercises = [
-        Exercise(
-            title: "Ejercicio 20 fds",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit."
-        ),
-        Exercise(
-            title: "Ejercicio 20 20",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit."
-        ),
-        Exercise(
-            title: "Ejercicio 20 20",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit."
-        )
-    ]
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEach(exercises.indices, id: \.self) { index in
-                        ExerciseRow1(exercise: exercises[index])
-                        
-                        if index != exercises.count - 1 {
-                            Divider()
-                                .padding(.horizontal)
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct ExerciseRow1: View {
-    let exercise: Exercise
-    
-    var body: some View {
-        HStack(alignment: .center, spacing: 15) {
-            VStack(alignment: .center, spacing: 10) {
-                Image(systemName: "figure.cooldown")
+        ZStack {
+            Image("HOME")
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 45, height: 45)
-            }
-            .padding(0)
-            .frame(width: 77, height: 76, alignment: .center)
-            .background(Constants.LabelsQuaternary)
-            .cornerRadius(60)
-            .overlay(
-                RoundedRectangle(cornerRadius: 60)
-                .inset(by: 0.5)
-                .stroke(
+                .scaledToFit()
+                .frame(width: UIScreen.main.bounds.width,height:UIScreen.main.bounds.height)
+                .ignoresSafeArea()
+            
+            VStack {
+                
+                VStack (spacing: 15){
+                    VStack(alignment:.leading, spacing: 15) {
+                        // Title1/Emphasized
+                        HStack (alignment: .center){
+                            Text("¡Es hora de Enfriarse!")
+                                .font(.title.bold())
+                                .frame(width: 243, alignment: .topLeading)
+                                .kerning(0.38)
+                                .foregroundColor(.white)
+                            Spacer()
+                            Image("Noti")
+                                .shadow(color: Color(red: 0, green: 0.68, blue: 0.7).opacity(0.4), radius: 8.0, x: 0, y: 4)
+                            
+                        }
+                        .frame(width: .infinity)
+                        
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: .infinity, height: 2)
+                            .background(.white.opacity(0.4))
+                        
+                        
+                    }
+                    .padding(.horizontal, 24)
+                    .frame(width:.infinity)
+                    
+                    Image("Iceberg")
+                }
+                
+                VStack(alignment: .center, spacing: 10) {
+                    Text("00:00")
+                        .font(.title.bold())
+                }
+                    .padding(23)
+                    .frame(width: 150, height: 60, alignment: .center)
+                    .background(Color(red: 0.24, green: 0.24, blue: 0.26).opacity(0.6))
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                        .inset(by: 0.5)
+                        .stroke(LinearGradient(
+                            stops: [
+                                Gradient.Stop(color: Color(red: 0.04, green: 0.04, blue: 0.04), location: 0.00),
+                                Gradient.Stop(color: .white, location: 1.00),
+                            ],
+                            startPoint: UnitPoint(x: -0.57, y: 0.5),
+                            endPoint: UnitPoint(x: 1.68, y: 0.5)
+                        ).opacity(0.49), lineWidth: 2)
+                    )
+                
+                HStack(alignment: .center, spacing: 12) {
+                    Text("descanzar")
+                }
+                    .padding(.horizontal, 35)
+                    .padding(.vertical, 12)
+                    .frame(width: 194, height: 65, alignment: .center)
+                    .background(
                     LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0.76, green: 0.43, blue: 0.92), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.11, green: 0.34, blue: 0.75), location: 1.00),
+                        ],
+                        startPoint: UnitPoint(x: 0.5, y: 0),
+                        endPoint: UnitPoint(x: 0.5, y: 1)
+                        )
+                        )
+                    .cornerRadius(24)
+                    .shadow(color: Color(red: 0, green: 0.68, blue: 0.7).opacity(0.35), radius: 2.85, x: 0, y: 4)
+                    .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                    .stroke(LinearGradient(
                         stops: [
                             Gradient.Stop(color: Color(red: 0.04, green: 0.04, blue: 0.04), location: 0.00),
                             Gradient.Stop(color: .white, location: 1.00),
@@ -174,52 +96,14 @@ struct ExerciseRow1: View {
                         startPoint: UnitPoint(x: -0.57, y: 0.5),
                         endPoint: UnitPoint(x: 1.68, y: 0.5)
                     ).opacity(0.49), lineWidth: 1)
-            )
-            
-            VStack(alignment: .leading, spacing: 6) {
-                Text(exercise.title)
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                
-                Text(exercise.description)
-                    .font(.footnote)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
+
+                    )
             }
-            .padding(0)
-            .frame(maxWidth: .infinity, alignment: .topLeading)
+            
         }
-        .padding(10)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            LinearGradient(
-                stops: [
-                    Gradient.Stop(color: Color(red: 0.02, green: 0.73, blue: 0.74), location: 0.00),
-                    Gradient.Stop(color: Color(red: 0.01, green: 0.1, blue: 0.34), location: 1.00),
-                ],
-                startPoint: UnitPoint(x: 0.5, y: 1),
-                endPoint: UnitPoint(x: 0.5, y: 0)
-            )
-            .opacity(0.33)
-        )
-        .cornerRadius(24)
-        .overlay(
-            RoundedRectangle(cornerRadius: 24)
-            .inset(by: 0.5)
-            .stroke(
-                LinearGradient(
-                    stops: [
-                        Gradient.Stop(color: Color(red: 0.04, green: 0.04, blue: 0.04), location: 0.00),
-                        Gradient.Stop(color: .white, location: 1.00),
-                    ],
-                    startPoint: UnitPoint(x: -0.57, y: 0.5),
-                    endPoint: UnitPoint(x: 1.68, y: 0.5)
-                ).opacity(0.49), lineWidth: 1)
-        )
+        
     }
 }
-
 #Preview {
-    ContentView()
+    homeView()
 }
